@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Native: Aulas Práticas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .nav-link.active {
+            background-color: #0d9488; /* teal-600 */
+            color: white;
+            transform: translateX(4px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        li {
+            list-style-position: inside;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div id="app" class="flex flex-col md:flex-row min-h-screen">
+        
+        <aside class="w-full md:w-80 bg-slate-800 text-white p-4 md:p-6 md:sticky md:top-0 md:h-screen overflow-y-auto">
+            <h1 class="text-2xl font-bold mb-6">Aulas Práticas</h1>
+            <nav id="main-nav">
+                <ul class="space-y-1">
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-1">1. Configurando o Ambiente</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-2">2. Componentização e Estado</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-3">3. Criando a Tela de Login</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-4">4. Login Interativo e Lista Mock</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-5">5. Implementando Navegação</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-6">6. Adicionando Navegação por Abas</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-7">7. Hooks Avançados na Prática</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-8">8. Configurando o Firebase</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-9">9. Implementando Login e Cadastro</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-10">10. Salvando e Exibindo Tarefas</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-11">11. Completando e Deletando Tarefas</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-12">12. Refatorando com Zustand</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-13">13. Adicionando Foto de Perfil</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-14">14. Polindo a UI e Animações</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-15">15. Teste Unitário e Build Final</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-6 md:p-10 overflow-y-auto">
+            
+            <section id="aula-1" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 1: Configurando o Ambiente e "Hello, World!"</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Garantir que todos os alunos tenham o ambiente de desenvolvimento a funcionar e criem a sua primeira aplicação React Native.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Instale o Node.js (versão LTS) e o Yarn.</li>
+                        <li>Instale o Expo CLI globalmente com `npm install -g expo-cli`.</li>
+                        <li>Crie um novo projeto com `expo init meuPrimeiroApp`.</li>
+                        <li>Abra o projeto no VS Code e explore a estrutura de pastas.</li>
+                        <li>Inicie o projeto com `yarn start` e abra-o no emulador/simulador.</li>
+                        <li>Instale a app Expo Go no seu telemóvel e teste a aplicação via QR Code.</li>
+                        <li>Modifique o ficheiro `App.js` para exibir "Olá, Mundo! O meu nome é [Seu Nome]".</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="aula-2" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 2: Componentização e Estado</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Aplicar os conceitos de React para criar componentes reutilizáveis e com estado interno.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>No projeto anterior, crie uma pasta `src/components`.</li>
+                        <li>Crie um componente `Header.js` que recebe uma `prop` `title` e a exibe.</li>
+                        <li>Crie um componente `Counter.js`.</li>
+                        <li>Dentro do `Counter.js`, use o `useState` para controlar um número.</li>
+                        <li>Adicione dois botões ao `Counter`: "Incrementar" e "Decrementar", que alteram o estado.</li>
+                        <li>Importe e use os componentes `Header` e `Counter` no seu `App.js`.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="aula-3" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 3: Criando a Tela de Login</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Iniciar o projeto prático do curso, criando a primeira tela e aplicando conceitos de layout com Flexbox.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Crie um novo projeto: `expo init gerenciadorDeTarefas`.</li>
+                        <li>Estruture o projeto: crie as pastas `src/screens` e `src/components`.</li>
+                        <li>Crie o ficheiro da tela de login: `src/screens/LoginScreen.js`.</li>
+                        <li>Use `<View>`, `<Text>`, `<TextInput>` e `<Button>` para montar a estrutura visual da tela.</li>
+                        <li>Use `StyleSheet` e Flexbox para centralizar os elementos e dar um espaçamento adequado.</li>
+                        <li>Estilize os inputs e o botão com cores, bordas e preenchimento para um visual agradável.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="aula-4" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 4: Login Interativo e Lista Mock</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Capturar dados do utilizador nos campos de texto e exibir uma lista de dados estáticos (mock) usando `FlatList`.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Na `LoginScreen.js`, crie dois estados com `useState` para guardar o email e a senha.</li>
+                        <li>Conecte os estados aos `TextInput`s usando as `props` `value` e `onChangeText`.</li>
+                        <li>No `onPress` do botão, exiba os valores do email e da senha na consola com `console.log`.</li>
+                        <li>Crie uma nova tela: `src/screens/TaskListScreen.js`.</li>
+                        <li>Crie um array de objetos (mock) com algumas tarefas de exemplo.</li>
+                        <li>Use o componente `FlatList` para renderizar a lista de tarefas na nova tela.</li>
+                        <li>Estilize cada item da lista para que seja visualmente agradável.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section id="aula-5" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 5: Implementando a Navegação Inicial</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Criar um fluxo de navegação funcional entre a tela de login e a lista de tarefas usando o Stack Navigator.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Instale as dependências do React Navigation (`@react-navigation/native`, `@react-navigation/stack`, etc.).</li>
+                        <li>Envolva toda a aplicação com o `NavigationContainer` no `App.js`.</li>
+                        <li>Crie um Stack Navigator e adicione `LoginScreen` e `TaskListScreen` como telas.</li>
+                        <li>Modifique o `onPress` do botão de login para chamar `navigation.navigate('TaskList')`.</li>
+                        <li>Passe o email do utilizador como parâmetro para a `TaskListScreen`.</li>
+                        <li>Exiba uma mensagem de boas-vindas na `TaskListScreen` usando o email recebido.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section id="aula-6" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 6: Adicionando Navegação por Abas</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Reestruturar a navegação para usar um Tab Navigator, melhorando a usabilidade da área principal da aplicação.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Instale as dependências do Bottom Tab Navigator.</li>
+                        <li>Crie uma nova tela: `src/screens/AddTaskScreen.js`.</li>
+                        <li>Crie um novo ficheiro para o Tab Navigator (ex: `TabNavigator.js`).</li>
+                        <li>Crie um Tab Navigator com duas abas: "Minhas Tarefas" (`TaskListScreen`) e "Nova Tarefa" (`AddTaskScreen`).</li>
+                        <li>Aninhe o `TabNavigator` dentro do `StackNavigator` principal, para que ele apareça após o login.</li>
+                        <li>Adicione ícones a cada aba usando a biblioteca `@expo/vector-icons`.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section id="aula-7" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 7: Hooks Avançados na Prática</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Usar `useEffect` para simular uma chamada de API e `useContext` para gerir um estado global, como um tema.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Na `TaskListScreen`, crie um estado para as tarefas e outro para o carregamento (`loading`).</li>
+                        <li>Use `useEffect` para, após 2 segundos (`setTimeout`), carregar dados mock no estado de tarefas e definir `loading` como `false`.</li>
+                        <li>Exiba um `ActivityIndicator` (spinner) enquanto `loading` for `true`.</li>
+                        <li>Crie uma pasta `src/contexts` e um ficheiro `ThemeContext.js`.</li>
+                        <li>Crie um contexto de tema (com valores para `light` e `dark`) e um Provider que permita alternar entre eles.</li>
+                        <li>Use o `useContext` nas suas telas para aplicar cores de fundo e de texto com base no tema selecionado.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section id="aula-8" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 8: Configurando o Firebase</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Criar e configurar um projeto Firebase e conectá-lo à aplicação React Native.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Aceda à Consola do Firebase e crie um novo projeto.</li>
+                        <li>Dentro do projeto, adicione uma nova aplicação Web.</li>
+                        <li>Copie o objeto de configuração do Firebase (`firebaseConfig`).</li>
+                        <li>No projeto React Native, instale a biblioteca do Firebase com `npx expo install firebase`.</li>
+                        <li>Crie um ficheiro `firebaseConfig.js` e cole a configuração.</li>
+                        <li>Inicialize o Firebase no `firebaseConfig.js`.</li>
+                        <li>Importe o ficheiro de configuração no `App.js` para garantir que a ligação é estabelecida no arranque.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section id="aula-9" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 9: Implementando Login e Cadastro</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Substituir a navegação falsa por um sistema de autenticação real com o Firebase Authentication.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Na `LoginScreen.js`, importe as funções de autenticação do Firebase.</li>
+                        <li>Crie uma função `handleSignUp` que usa os estados de email e senha para criar um novo utilizador.</li>
+                        <li>Crie uma função `handleSignIn` para fazer o login de um utilizador existente.</li>
+                        <li>Adicione um botão de "Cadastrar" e conecte as funções aos botões corretos.</li>
+                        <li>Use `onAuthStateChanged` na sua estrutura de navegação para alternar entre as telas de Login e as telas principais da app.</li>
+                        <li>Adicione um botão de "Sair" que chama a função `signOut`.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section id="aula-10" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 10: Salvando e Exibindo Tarefas do Firestore</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Implementar a criação de novas tarefas e a leitura delas em tempo real a partir da base de dados Firestore.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Na `AddTaskScreen`, crie um input para o título da tarefa e um botão "Salvar".</li>
+                        <li>Ao pressionar "Salvar", use `addDoc` para criar um novo documento na coleção `tasks` no Firestore.</li>
+                        <li>O documento deve conter o título, um status (`completed: false`) e o ID do utilizador logado.</li>
+                        <li>Na `TaskListScreen`, use `useEffect` com `onSnapshot` para ouvir em tempo real as tarefas do utilizador logado.</li>
+                        <li>Atualize o estado `tasks` com os dados recebidos do `onSnapshot`.</li>
+                        <li>Teste: crie uma tarefa e veja-a aparecer instantaneamente na lista.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section id="aula-11" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 11: Completando e Deletando Tarefas</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Implementar as funcionalidades de atualização e exclusão (Update, Delete), completando o ciclo CRUD.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Em cada item da lista de tarefas, adicione um ícone de checkbox clicável.</li>
+                        <li>Ao clicar no checkbox, chame uma função que usa `updateDoc` para alterar o campo `completed` da tarefa no Firestore.</li>
+                        <li>Use estilização condicional para que tarefas completas apareçam com um visual diferente (ex: riscadas).</li>
+                        <li>Adicione um ícone de lixeira em cada item da lista.</li>
+                        <li>Ao clicar na lixeira, chame uma função que usa `deleteDoc` para remover a tarefa do Firestore.</li>
+                        <li>Teste todo o fluxo: criar, ver, marcar como concluída e apagar uma tarefa.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section id="aula-12" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 12: Refatorando com Zustand</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Implementar uma 'store' com Zustand para gerir o estado de autenticação de forma centralizada e otimizada.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Instale a biblioteca `zustand`.</li>
+                        <li>Crie uma pasta `src/store` e um ficheiro `authStore.js`.</li>
+                        <li>Crie uma 'store' que gira o estado do utilizador (`user`) e o estado de carregamento (`loading`).</li>
+                        <li>Mova a lógica do `onAuthStateChanged` para dentro da 'store', fazendo com que ela atualize o estado `user`.</li>
+                        <li>Refatore os componentes que dependem do estado de autenticação para consumir os dados da 'store' do Zustand.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section id="aula-13" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 13: Adicionando Foto de Perfil</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Permitir que o utilizador adicione uma foto de perfil usando a galeria do telemóvel com a API `expo-image-picker`.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Crie uma tela `ProfileScreen.js` e adicione-a à navegação.</li>
+                        <li>Instale a biblioteca `expo-image-picker`.</li>
+                        <li>Na `ProfileScreen`, adicione um avatar padrão e um botão "Alterar Foto".</li>
+                        <li>Crie uma função que pede permissão para aceder à galeria.</li>
+                        <li>Se a permissão for concedida, abra a galeria com `launchImageLibraryAsync`.</li>
+                        <li>Quando o utilizador selecionar uma imagem, atualize o estado e exiba a imagem selecionada.</li>
+                        <li>**Bónus:** Pesquise sobre o Firebase Storage e implemente o upload da imagem para o backend.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section id="aula-14" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 14: Polindo a UI e Adicionando Animações</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Melhorar a aparência da aplicação com uma biblioteca de componentes e adicionar animações subtis para uma melhor UX.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Instale a biblioteca `react-native-paper`.</li>
+                        <li>Refatore os `TextInput`s e `Button`s da sua aplicação para usar os componentes correspondentes da biblioteca.</li>
+                        <li>Adicione um `ActivityIndicator` do Paper para um visual mais consistente.</li>
+                        <li>Use a `Animated` API para criar um efeito de "fade in" (aparecimento suave) para os itens da lista de tarefas.</li>
+                        <li>Crie uma animação de `spring` no botão principal quando ele é pressionado para dar um feedback mais tátil.</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section id="aula-15" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Prática 15: Teste Unitário e Build Final</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Escrever um teste simples para garantir a qualidade do código e gerar o ficheiro de instalação da aplicação.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Passos</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Configure o Jest no projeto, se ainda não estiver.</li>
+                        <li>Escolha um componente simples e sem muita lógica (ex: o `Header` criado na aula 2).</li>
+                        <li>Escreva um teste que verifica se o componente renderiza o texto passado via `props` corretamente.</li>
+                        <li>Instale e configure o EAS CLI (`npm install -g eas-cli`).</li>
+                        <li>Faça login na sua conta Expo com `eas login`.</li>
+                        <li>Configure o projeto para o build com `eas build:configure`.</li>
+                        <li>Execute o comando de build para Android (`eas build -p android --profile preview`).</li>
+                        <li>Após a conclusão, descarregue o ficheiro APK e instale-o num dispositivo Android físico para ver o resultado final!</li>
+                    </ol>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            function showSection(targetId) {
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+            }
+
+            function updateActiveLink(targetId) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.target === targetId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.dataset.target;
+                    showSection(targetId);
+                    updateActiveLink(targetId);
+                });
+            });
+
+            const firstTarget = navLinks[0] ? navLinks[0].dataset.target : null;
+            if (firstTarget) {
+                showSection(firstTarget);
+                updateActiveLink(firstTarget);
+            }
+        });
+    </script>
+</body>
+</html>
