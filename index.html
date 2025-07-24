@@ -54,6 +54,7 @@
                     <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-13">13. Adicionando Foto de Perfil</a></li>
                     <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-14">14. Polindo a UI e Animações</a></li>
                     <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-15">15. Teste Unitário e Build Final</a></li>
+                    <li><a href="#" class="nav-link text-sm block p-3 rounded-lg transition-all duration-200" data-target="aula-extra-mongo">Extra: Conectando com MongoDB</a></li>
                 </ul>
             </nav>
         </aside>
@@ -345,6 +346,45 @@
                         <li>Configure o projeto para o build com `eas build:configure`.</li>
                         <li>Execute o comando de build para Android (`eas build -p android --profile preview`).</li>
                         <li>Após a conclusão, descarregue o ficheiro APK e instale-o num dispositivo Android físico para ver o resultado final!</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="aula-extra-mongo" class="content-section space-y-6">
+                <h2 class="text-3xl font-bold text-teal-700">Aula Extra: Conectando com MongoDB Atlas</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Objetivo</h3>
+                    <p class="text-slate-600">Aprender a conectar a aplicação React Native a uma base de dados MongoDB Atlas, criando uma API REST simples com Node.js e Express. Isto mostra uma abordagem de backend mais tradicional em comparação com o BaaS (Firebase).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Parte 1: Configuração do MongoDB Atlas</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Crie uma conta gratuita no site do MongoDB Atlas.</li>
+                        <li>Crie um novo "Cluster" (servidor de base de dados) no plano gratuito (M0).</li>
+                        <li>Crie um utilizador de base de dados (com nome e senha) para a sua aplicação.</li>
+                        <li>Configure o acesso de rede, permitindo o acesso a partir de qualquer IP (`0.0.0.0/0`) para facilitar o desenvolvimento.</li>
+                        <li>Obtenha a "Connection String" (URL de conexão) para a sua aplicação.</li>
+                    </ol>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Parte 2: Criação do Backend (API com Node.js/Express)</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Crie uma nova pasta para o seu backend e inicie um projeto Node.js com `npm init -y`.</li>
+                        <li>Instale as dependências: `npm install express mongoose cors dotenv`.</li>
+                        <li>Crie um ficheiro `.env` para guardar a sua Connection String do MongoDB de forma segura.</li>
+                        <li>Crie um ficheiro `server.js` e configure um servidor Express básico.</li>
+                        <li>Use o Mongoose para se conectar à sua base de dados Atlas usando a Connection String.</li>
+                        <li>Defina um "Schema" e um "Model" do Mongoose para as suas tarefas.</li>
+                        <li>Crie as rotas da API (endpoints) para as operações CRUD (ex: `GET /tarefas`, `POST /tarefas`).</li>
+                    </ol>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-2">Parte 3: Conexão do React Native com a API</h3>
+                    <ol class="list-decimal space-y-2 text-slate-700">
+                        <li>Na sua aplicação React Native, substitua as chamadas do Firebase por chamadas HTTP à sua nova API.</li>
+                        <li>Use a API `fetch` ou instale uma biblioteca como `axios` para fazer as requisições.</li>
+                        <li>Para testar no seu telemóvel, o URL da API deve usar o endereço de IP da sua máquina na rede local (ex: `http://192.168.1.10:3000/tarefas`), não `localhost`.</li>
+                        <li>Refatore as funções de criar, ler, atualizar e apagar tarefas para usarem a sua API Express.</li>
                     </ol>
                 </div>
             </section>
